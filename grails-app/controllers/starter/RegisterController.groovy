@@ -3,7 +3,9 @@ package starter
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.authentication.dao.NullSaltSource
 import grails.plugin.springsecurity.ui.RegistrationCode
+import org.springframework.security.access.annotation.Secured
 
+@Secured("permitAll")
 class RegisterController extends grails.plugin.springsecurity.ui.RegisterController {
 
     def index() {
