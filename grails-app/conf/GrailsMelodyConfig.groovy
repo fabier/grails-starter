@@ -32,3 +32,7 @@ Specify jndi name of datasource to monitor in production environment
         javamelody.datasources = 'java:comp/env/myapp/mydatasource'
     }
 }*/
+
+javamelody.'http-transform-pattern' = '\\d+'  //filter out numbers from URI
+javamelody.'sql-transform-pattern' = '\\d+'
+javamelody.'storage-directory' = "${System.getProperty("user.home")}/.javamelody"
