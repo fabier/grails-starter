@@ -18,3 +18,4 @@ stacktrace.log
 /.idea
 .project
 .classpath
+/*.iml
