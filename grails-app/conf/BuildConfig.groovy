@@ -83,5 +83,8 @@ grails.project.dependency.resolution = {
 
         // Gestion des emails
         compile ":mail:1.0.7"
+
+        // Statistiques et monitoring
+        compile ":grails-melody:1.55.0"
     }
 }
