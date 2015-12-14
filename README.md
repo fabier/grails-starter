@@ -8,6 +8,28 @@ Uses **mail plugin** to send confirmation emails and "recover password" email.
 
 ## Configuration
 
+### Database
+By default, the project uses a **PostgreSQL 9.4** database.
+To change the default configuration, edit <code>DataSource.groovy</code>.
+
+It is recommended that you change values for **url**, **username** and **password**.
+You can also uncomment <code>// logSql = true</code> to display SQL logs.
+
+> DataSource.groovy
+
+```groovy
+dataSource {
+    pooled = true
+    dbCreate = "update" // "validate"
+    driverClassName = "org.postgresql.Driver"
+    url = "jdbc:postgresql://localhost:5432/XXXXXXXXXXXX"
+    dialect = org.hibernate.dialect.PostgreSQL9Dialect
+    username = "XXXXXXXXXXXX"
+    password = "XXXXXXXXXXXX"
+//    logSql = true
+}
+```
+
 ### Security
 
 By default, **email** is the user's login. This can be changed to **username** if needed by modifying both <code>User.groovy</code> and <code>Config.groovy</code>.
