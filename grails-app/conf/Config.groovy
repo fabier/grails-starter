@@ -115,6 +115,20 @@ log4j.main = {
             'net.sf.ehcache.hibernate'
 }
 
+// Configuration pour le serveur de mail
+grails {
+    mail {
+        host = "smtp.XXXXXXXXXXX.com"
+        port = 587
+        username = "XXXXXXXXXXX@XXXXXXXXXXX.com"
+        password = "XXXXXXXXXXX"
+        props = ["mail.smtp.auth"                  : "true",
+                 "mail.smtp.socketFactory.port"    : "587",
+                 "mail.smtp.socketFactory.class"   : "javax.net.ssl.SSLSocketFactory",
+                 "mail.smtp.socketFactory.fallback": "true"]
+    }
+}
+
 // Pour les soucis de pagination avec Bootstrap
 grails.plugins.twitterbootstrap.fixtaglib = true
 
