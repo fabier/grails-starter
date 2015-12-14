@@ -1,60 +1,87 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title><g:message code='spring.security.ui.login.title'/></title>
-<meta name='layout' content='register'/>
+    <meta name="layout" content="main"/>
+    <title>Login</title>
 </head>
 
 <body>
 
-<p/>
+<g:render template="/templates/flashMessage"/>
 
-<div class="login s2ui_center ui-corner-all" style='text-align:center;'>
-	<div class="login-inner">
-	<form action='${postUrl}' method='POST' id="loginForm" name="loginForm" autocomplete='off'>
-	<div class="sign-in">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 center-block">
+            <div class="jumbotron header-background nomargin-left-right">
+                <form action='${postUrl}' method='POST' id="loginForm" name="loginForm"
+                      class="form-horizontal">
+                    <div class="form-group">
+                        <label for="username" class="col-md-4 control-label">
+                            <g:message code="default.email" default="Email"/>
+                        </label>
 
-	<h1><g:message code='spring.security.ui.login.signin'/></h1>
+                        <div class="col-md-8">
+                            <input name="j_username" id="username" class="form-control"/>
+                        </div>
+                    </div>
 
-	<table>
-		<tr>
-			<td><label for="username"><g:message code='spring.security.ui.login.username'/></label></td>
-			<td><input name="j_username" id="username" size="20" /></td>
-		</tr>
-		<tr>
-			<td><label for="password"><g:message code='spring.security.ui.login.password'/></label></td>
-			<td><input type="password" name="j_password" id="password" size="20" /></td>
-		</tr>
-		<tr>
-			<td colspan='2'>
-				<input type="checkbox" class="checkbox" name="${rememberMeParameter}" id="remember_me" checked="checked" />
-				<label for='remember_me'><g:message code='spring.security.ui.login.rememberme'/></label> |
-				<span class="forgot-link">
-					<g:link controller='register' action='forgotPassword'><g:message code='spring.security.ui.login.forgotPassword'/></g:link>
-				</span>
-			</td>
-		</tr>
-		<tr>
-			<td colspan='2'>
-				<s2ui:linkButton elementId='register' controller='register' messageCode='spring.security.ui.login.register'/>
-				<s2ui:submitButton elementId='loginButton' form='loginForm' messageCode='spring.security.ui.login.login'/>
-			</td>
-		</tr>
-	</table>
+                    <div class="form-group">
+                        <label for="password" class="col-md-4 control-label">
+                            <g:message code="default.password" default="Mot de passe"/>
+                        </label>
 
-	</div>
-	</form>
-	</div>
+                        <div class="col-md-8">
+                            <input type="password" name="j_password" id="password"
+                                   class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                            <input type='checkbox' class='chk' name='${rememberMeParameter}'
+                                   id='remember_me' checked='checked'/>
+                            <label for='remember_me'>
+                                <g:message code="default.rememberMe" default="Rester connecté"/>
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                            <button type="submit" class="btn btn-primary">
+                                <g:message code="default.login" default="Se connecter"/>
+                            </button>
+                            <span class="text-small margin-left-20">
+                                <g:link controller='register' action='forgotPassword'>
+                                    <g:message code="default.forgotPassword"
+                                               default="Mot de passe oublié ?"/>
+                                </g:link>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-4">
+                            <span class="text-small">Vous n'avez pas encore de compte ?</span>
+                            <br/>
+                            <span class="text-small">
+                                <g:link controller="register" action="index">
+                                    Cliquez ici pour créer un compte.
+                                </g:link>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-
 <script>
-$(document).ready(function() {
-	$('#username').focus();
-});
-
-<s2ui:initCheckboxes/>
-
+    $(document).ready(function () {
+        $('#username').focus();
+    });
+    <s2ui:initCheckboxes/>
 </script>
-
 </body>
 </html>
