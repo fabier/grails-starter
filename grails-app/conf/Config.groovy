@@ -113,6 +113,10 @@ log4j.main = {
             'org.springframework',
             'org.hibernate',
             'net.sf.ehcache.hibernate'
+
+    warn 'grails.app.services.grails.plugin.springsecurity.ui.SpringSecurityUiService'
+
+    info "grails.app"
 }
 
 
