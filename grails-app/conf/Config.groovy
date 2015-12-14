@@ -131,6 +131,9 @@ grails {
 
 // Pour les soucis de pagination avec Bootstrap
 grails.plugins.twitterbootstrap.fixtaglib = true
+grails.assets.less.compile = 'less4j'
+grails.assets.plugin."twitter-bootstrap".excludes = ["**/*.less"]
+grails.assets.plugin."twitter-bootstrap".includes = ["bootstrap.less"]
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'starter.User'
@@ -144,7 +147,6 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/**/js/**'      : ['permitAll'],
         '/**/css/**'     : ['permitAll'],
         '/**/images/**'  : ['permitAll'],
-        '/**/favicon.ico': ['permitAll'],
         '/monitoring'    : ['permitAll'],
         '/monitoring/**' : ['permitAll']
 ]
