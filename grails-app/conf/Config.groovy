@@ -115,6 +115,9 @@ log4j.main = {
             'net.sf.ehcache.hibernate'
 }
 
+// Pour les soucis de pagination avec Bootstrap
+grails.plugins.twitterbootstrap.fixtaglib = true
+
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'starter.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'starter.UserRole'
