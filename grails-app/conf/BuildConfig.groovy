@@ -49,8 +49,13 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         // runtime 'mysql:mysql-connector-java:5.1.29'
-        runtime 'org.postgresql:postgresql:9.4-1201-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+
+        // Driver base de données
+        runtime 'org.postgresql:postgresql:9.4-1201-jdbc41'
+
+        // Librairies utilitaires
+        compile "org.apache.commons:commons-lang3:3.4"
     }
 
     plugins {
