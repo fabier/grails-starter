@@ -7,6 +7,8 @@ import org.springframework.security.access.annotation.Secured
 class UserController extends grails.plugin.springsecurity.ui.UserController {
 
     def search() {
+        setIfMissing 'max', 10, 100
+        setIfMissing 'offset', 0
         def results = User.createCriteria().list {
             order("username", "asc")
             maxResults(10)
