@@ -2,41 +2,49 @@ package starter
 
 class User {
 
-	transient springSecurityService
+    transient springSecurityService
 
-	String username
-	String password
-	boolean enabled = true
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
+    String username
+    String password
+    String email
+    boolean enabled = true
+    boolean accountExpired
+    boolean accountLocked
+    boolean passwordExpired
 
-	static transients = ['springSecurityService']
+    Date lastUpdated
+    Date dateCreated
+    User creator
 
-	static constraints = {
-		username blank: false, unique: true
-		password blank: false
-	}
+    static transients = ['springSecurityService']
 
-	static mapping = {
-		password column: '`password`'
-	}
+    static constraints = {
+        username blank: false
+        password blank: false
+        email email: true, unique: true
+        creator nullable: true
+    }
 
-	Set<Role> getAuthorities() {
-		UserRole.findAllByUser(this).collect { it.role }
-	}
+    static mapping = {
+        table '`user`'
+        password column: '`password`'
+    }
 
-	def beforeInsert() {
-		encodePassword()
-	}
+    Set<Role> getAuthorities() {
+        UserRole.findAllByUser(this).collect { it.role }
+    }
 
-	def beforeUpdate() {
-		if (isDirty('password')) {
-			encodePassword()
-		}
-	}
+    def beforeInsert() {
+        encodePassword()
+    }
 
-	protected void encodePassword() {
-		password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
-	}
+    def beforeUpdate() {
+        if (isDirty('password')) {
+            encodePassword()
+        }
+    }
+
+    protected void encodePassword() {
+        password = springSecurityService?.passwordEncoder ? springSecurityService.encodePassword(password) : password
+    }
 }
