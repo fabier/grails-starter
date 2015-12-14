@@ -48,18 +48,22 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-user"></i>
-                        &nbsp;Connexion
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-log-out"></i>
-                        &nbsp;Déconnexion
-                    </a>
-                </li>
+                <sec:ifNotLoggedIn>
+                    <li>
+                        <g:link controller="login">
+                            <i class="glyphicon glyphicon-user"></i>
+                            &nbsp;Connexion
+                        </g:link>
+                    </li>
+                </sec:ifNotLoggedIn>
+                <sec:ifLoggedIn>
+                    <li>
+                        <g:link controller="logout">
+                            <i class="glyphicon glyphicon-log-out"></i>
+                            &nbsp;Déconnexion
+                        </g:link>
+                    </li>
+                </sec:ifLoggedIn>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
