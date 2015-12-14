@@ -76,5 +76,9 @@ grails.project.dependency.resolution = {
 
         // Bootstrap
         compile ":twitter-bootstrap:3.3.4"
+
+        // Gestion utilisateurs
+        compile ":spring-security-core:2.0-RC4"
+        compile ":spring-security-ui:1.0-RC2"
     }
 }
