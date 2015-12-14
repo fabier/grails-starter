@@ -2,13 +2,18 @@ package starter
 
 class Role {
 
-	String authority
+    String authority
 
-	static mapping = {
-		cache true
-	}
+    Date lastUpdated
+    Date dateCreated
+    User creator
 
-	static constraints = {
-		authority blank: false, unique: true
-	}
+    static mapping = {
+        cache true
+    }
+
+    static constraints = {
+        authority blank: false, unique: true
+        creator nullable: true
+    }
 }

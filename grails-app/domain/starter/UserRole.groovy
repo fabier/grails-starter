@@ -4,95 +4,104 @@ import org.apache.commons.lang.builder.HashCodeBuilder
 
 class UserRole implements Serializable {
 
-	private static final long serialVersionUID = 1
+    private static final long serialVersionUID = 1
 
-	User user
-	Role role
+    User user
+    Role role
 
-	boolean equals(other) {
-		if (!(other instanceof UserRole)) {
-			return false
-		}
+    Date lastUpdated
+    Date dateCreated
 
-		other.user?.id == user?.id &&
-		other.role?.id == role?.id
-	}
+    boolean equals(other) {
+        if (!(other instanceof UserRole)) {
+            return false
+        }
 
-	int hashCode() {
-		def builder = new HashCodeBuilder()
-		if (user) builder.append(user.id)
-		if (role) builder.append(role.id)
-		builder.toHashCode()
-	}
+        other.user?.id == user?.id &&
+                other.role?.id == role?.id
+    }
 
-	static UserRole get(long userId, long roleId) {
-		UserRole.where {
-			user == User.load(userId) &&
-			role == Role.load(roleId)
-		}.get()
-	}
+    int hashCode() {
+        def builder = new HashCodeBuilder()
+        if (user) builder.append(user.id)
+        if (role) builder.append(role.id)
+        builder.toHashCode()
+    }
 
-	static boolean exists(long userId, long roleId) {
-		UserRole.where {
-			user == User.load(userId) &&
-			role == Role.load(roleId)
-		}.count() > 0
-	}
+    static UserRole get(long userId, long roleId) {
+        UserRole.where {
+            user == User.load(userId) &&
+                    role == Role.load(roleId)
+        }.get()
+    }
 
-	static UserRole create(User user, Role role, boolean flush = false) {
-		def instance = new UserRole(user: user, role: role)
-		instance.save(flush: flush, insert: true)
-		instance
-	}
+    static boolean exists(long userId, long roleId) {
+        UserRole.where {
+            user == User.load(userId) &&
+                    role == Role.load(roleId)
+        }.count() > 0
+    }
 
-	static boolean remove(User u, Role r, boolean flush = false) {
-		if (u == null || r == null) return false
+    static UserRole create(User user, Role role, boolean flush = false) {
+        def instance = new UserRole(user: user, role: role)
+        instance.save(flush: flush, insert: true)
+        instance
+    }
 
-		int rowCount = UserRole.where {
-			user == User.load(u.id) &&
-			role == Role.load(r.id)
-		}.deleteAll()
+    static boolean remove(User u, Role r, boolean flush = false) {
+        if (u == null || r == null) return false
 
-		if (flush) { UserRole.withSession { it.flush() } }
+        int rowCount = UserRole.where {
+            user == User.load(u.id) &&
+                    role == Role.load(r.id)
+        }.deleteAll()
 
-		rowCount > 0
-	}
+        if (flush) {
+            UserRole.withSession { it.flush() }
+        }
 
-	static void removeAll(User u, boolean flush = false) {
-		if (u == null) return
+        rowCount > 0
+    }
 
-		UserRole.where {
-			user == User.load(u.id)
-		}.deleteAll()
+    static void removeAll(User u, boolean flush = false) {
+        if (u == null) return
 
-		if (flush) { UserRole.withSession { it.flush() } }
-	}
+        UserRole.where {
+            user == User.load(u.id)
+        }.deleteAll()
 
-	static void removeAll(Role r, boolean flush = false) {
-		if (r == null) return
+        if (flush) {
+            UserRole.withSession { it.flush() }
+        }
+    }
 
-		UserRole.where {
-			role == Role.load(r.id)
-		}.deleteAll()
+    static void removeAll(Role r, boolean flush = false) {
+        if (r == null) return
 
-		if (flush) { UserRole.withSession { it.flush() } }
-	}
+        UserRole.where {
+            role == Role.load(r.id)
+        }.deleteAll()
 
-	static constraints = {
-		role validator: { Role r, UserRole ur ->
-			if (ur.user == null) return
-			boolean existing = false
-			UserRole.withNewSession {
-				existing = UserRole.exists(ur.user.id, r.id)
-			}
-			if (existing) {
-				return 'userRole.exists'
-			}
-		}
-	}
+        if (flush) {
+            UserRole.withSession { it.flush() }
+        }
+    }
 
-	static mapping = {
-		id composite: ['role', 'user']
-		version false
-	}
+    static constraints = {
+        role validator: { Role r, UserRole ur ->
+            if (ur.user == null) return
+            boolean existing = false
+            UserRole.withNewSession {
+                existing = UserRole.exists(ur.user.id, r.id)
+            }
+            if (existing) {
+                return 'userRole.exists'
+            }
+        }
+    }
+
+    static mapping = {
+        id composite: ['role', 'user']
+        version false
+    }
 }
