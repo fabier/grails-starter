@@ -80,5 +80,8 @@ grails.project.dependency.resolution = {
         // Gestion utilisateurs
         compile ":spring-security-core:2.0-RC4"
         compile ":spring-security-ui:1.0-RC2"
+
+        // Gestion des emails
+        compile ":mail:1.0.7"
     }
 }
