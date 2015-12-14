@@ -60,6 +60,7 @@ grails.project.dependency.resolution = {
 
     plugins {
         // plugins for the build system only
+        // build ':tomcat:8.0.22'
         build ":tomcat:7.0.55.2" // or ":tomcat:8.0.20"
 
         // plugins for the compile step
@@ -69,10 +70,10 @@ grails.project.dependency.resolution = {
         compile ":less-asset-pipeline:2.0.8"
 
         // plugins needed at runtime but not for compilation
-        runtime ":hibernate4:4.3.8.1" // or ":hibernate:3.6.10.18"
+        runtime ":hibernate:3.6.10.19"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
-        compile ":jquery-ui:1.10.4"
+        runtime ":jquery-ui:1.10.4"
 
         // Bootstrap
         compile ":twitter-bootstrap:3.3.4"
