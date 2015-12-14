@@ -115,6 +115,16 @@ log4j.main = {
             'net.sf.ehcache.hibernate'
 }
 
+
+// Définition des rôles
+role.admin = 'ROLE_ADMIN'
+role.user = 'ROLE_USER'
+
+// Définition de l'utilisateur 'administrateur'
+//admin.username='XXXX XXXXXXX'
+//admin.password='XXXX XXXXXXX'
+//admin.email='XXXX@XXXXXXX.com'
+
 // Configuration pour le serveur de mail
 grails {
     mail {
