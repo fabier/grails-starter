@@ -156,6 +156,6 @@ class RegisterCommand {
         email blank: false, email: true
         password blank: false, validator: RegisterController.passwordValidator
         password2 validator: RegisterController.password2Validator
-        acceptsConditions notEqual: false
+        // acceptsConditions notEqual: false
     }
 }
