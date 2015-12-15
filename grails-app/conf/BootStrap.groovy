@@ -13,7 +13,7 @@ class BootStrap {
             log.info("ADMIN Role : ${adminRole.authority}")
 
             def userRole = Role.findByAuthority(grailsApplication.config.role.user) ?: new Role(authority: grailsApplication.config.role.user).save(failOnError: true, flush: true)
-            log.info("User Role : ${userRole.authority}")
+            log.info("USER Role : ${userRole.authority}")
 
             if (grailsApplication.config.admin) {
                 def adminUser = User.findByEmail(grailsApplication.config.admin.email) ?:
