@@ -22,14 +22,15 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
             return
         }
 
-        def User = command.grailsApplication.getDomainClass(SpringSecurityUtils.securityConfig.userLookup.userDomainClassName).clazz
-        def user = User.findByEmail(command.email)
+        def userClass = lookupUserClass()
+        String usernameFieldName = SpringSecurityUtils.securityConfig.userLookup.usernamePropertyName
+        def user = userClass.findWhere((usernameFieldName): command."$usernameFieldName")
         if (user) {
             if (user.accountLocked) {
                 // On va renvoyer le mail de validation automatiquement
             } else {
                 // Le compte existe déjà et il est actif
-                flash.error = message(code: 'registerCommand.user.alreadyUnlocked', args: [
+                flash.error = message(code: 'default.register.user.alreadyUnlocked', args: [
                         createLink(controller: "login"),
                         createLink(controller: "register", action: "forgotPassword")
                 ])
@@ -43,7 +44,7 @@ class RegisterController extends grails.plugin.springsecurity.ui.RegisterControl
                     accountLocked: true, enabled: true)
         }
 
-        String salt = saltSource instanceof NullSaltSource ? null : command.username
+        String salt = saltSource instanceof NullSaltSource ? null : command."$usernameFieldName"
         RegistrationCode registrationCode = springSecurityUiService.register(user, command.password, salt)
         if (registrationCode == null || registrationCode.hasErrors()) {
             // null means problem creating the user
