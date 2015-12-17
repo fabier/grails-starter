@@ -51,12 +51,24 @@
                 <sec:ifNotLoggedIn>
                     <li>
                         <g:link controller="login">
-                            <i class="glyphicon glyphicon-user"></i>
-                            &nbsp;Connexion
+                            <i class="glyphicon glyphicon-log-in"></i>
+                            &nbsp;<g:message code="default.connection"/>
+                        </g:link>
+                    </li>
+                    <li>
+                        <g:link controller="register">
+                            <i class="glyphicon glyphicon-plus-sign"></i>
+                            &nbsp;<g:message code="default.register"/>
                         </g:link>
                     </li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-user"></i>
+                            &nbsp;<sec:username/>
+                        </a>
+                    </li>
                     <li>
                         <g:link controller="logout">
                             <i class="glyphicon glyphicon-log-out"></i>
