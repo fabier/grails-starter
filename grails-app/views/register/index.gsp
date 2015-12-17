@@ -35,7 +35,9 @@
                         <form action='register' method='POST' id="registerForm" name="registerForm"
                               class="form-horizontal">
 
-                            <div class="form-group">
+                            <div class="form-group ${hasErrors(bean: command, field: "username") {
+                                "has-error has-feedback"
+                            }}">
                                 <label for="username" class="col-md-4 control-label">
                                     <g:message code="default.username" default="Username"/>
                                 </label>
@@ -43,10 +45,18 @@
                                 <div class="col-md-8">
                                     <input type="text" name="username" id="username" class="form-control"
                                            value="${command.username}"/>
+                                    <g:hasErrors bean="${command}" field="username">
+                                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                        <span class="text-danger">
+                                            <g:renderError bean="${command}" field="username"/>
+                                        </span>
+                                    </g:hasErrors>
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group ${hasErrors(bean: command, field: "email") {
+                                "has-error has-feedback"
+                            }}">
                                 <label for="email" class="col-md-4 control-label">
                                     <g:message code="default.email" default="Email"/>
                                 </label>
@@ -54,14 +64,18 @@
                                 <div class="col-md-8">
                                     <input type="text" name="email" id="email" class="form-control"
                                            value="${command.email}"/>
+                                    <g:hasErrors bean="${command}" field="email">
+                                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                        <span class="text-danger">
+                                            <g:renderError bean="${command}" field="email"/>
+                                        </span>
+                                    </g:hasErrors>
                                 </div>
                             </div>
 
-                            %{--<s2ui:passwordFieldRow name='password' labelCode='user.password.label' bean="${command}"--}%
-                            %{--size='40' labelCodeDefault='Password'--}%
-                            %{--value="${command.password}"/>--}%
-
-                            <div class="form-group">
+                            <div class="form-group ${hasErrors(bean: command, field: "password") {
+                                "has-error has-feedback"
+                            }}">
                                 <label for="password" class="col-md-4 control-label">
                                     <g:message code="default.password" default="Password"/>
                                 </label>
@@ -69,15 +83,18 @@
                                 <div class="col-md-8">
                                     <input type="password" name="password" id="password" class="form-control"
                                            value="${command.password}"/>
+                                    <g:hasErrors bean="${command}" field="password">
+                                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                        <span class="text-danger">
+                                            <g:renderError bean="${command}" field="password"/>
+                                        </span>
+                                    </g:hasErrors>
                                 </div>
                             </div>
 
-                            %{--<s2ui:passwordFieldRow name='password2' labelCode='user.password2.label'--}%
-                            %{--bean="${command}"--}%
-                            %{--size='40' labelCodeDefault='Password (again)'--}%
-                            %{--value="${command.password2}"/>--}%
-
-                            <div class="form-group">
+                            <div class="form-group ${hasErrors(bean: command, field: "password2") {
+                                "has-error has-feedback"
+                            }}">
                                 <label for="password2" class="col-md-4 control-label">
                                     <g:message code="default.password.confirm" default="Password (again)"/>
                                 </label>
@@ -85,6 +102,12 @@
                                 <div class="col-md-8">
                                     <input type="password" name="password2" id="password2" class="form-control"
                                            value="${command.password2}"/>
+                                    <g:hasErrors bean="${command}" field="password2">
+                                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                        <span class="text-danger">
+                                            <g:renderError bean="${command}" field="password2"/>
+                                        </span>
+                                    </g:hasErrors>
                                 </div>
                             </div>
 
