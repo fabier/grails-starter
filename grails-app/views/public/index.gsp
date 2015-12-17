@@ -67,7 +67,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-6">
             <div id="status" role="complementary">
                 <h1>Application Status</h1>
                 <ul>
@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-9 col-xs-6">
             <div id="page-body" role="main">
                 <h1>Welcome to Grails</h1>
 
