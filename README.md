@@ -227,8 +227,8 @@ L'équipe XXXXXXXXXXX
 ```
 
 ### Package Name
-Refactor package name from <code>starter</code> to what you like.
-<br/>
+Refactor package name from <code>starter</code> to what you like. Don't forget to also refactor <code>grails-app/conf/starter</code> to that package name too (so that <code>LoggingFilters.groovy</code> works as expected)
+
 Then use this name to edit values in <code>Config.groovy</code>
 
 > Config.groovy
