@@ -8,6 +8,15 @@ Uses **mail plugin** to send confirmation emails and "recover password" email.
 
 ## Configuration
 
+### application.properties
+Edit file <code>application.properties</code>
+Change app.name to your application name
+
+```
+#app.name=grails-starter
+app.name=my.superb.app
+```
+
 ### Database
 By default, the project uses a **PostgreSQL 9.4** database.
 To change the default configuration, edit <code>DataSource.groovy</code>.
