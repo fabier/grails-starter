@@ -1,6 +1,9 @@
 # grails-starter
 A starter project for Grails with **Bootstrap**, **PostgreSQL 9.4**, **RestAPI** and **AngularJS**.
 
+Designed to work with **Grails 2.4.5**.<br/>
+Tested with **Java 1.7.0_91**.
+
 Uses **SpringSecurity** for authentication
 
 Uses **mail plugin** to send confirmation emails and "recover password" email.
@@ -213,3 +216,14 @@ L'équipe XXXXXXXXXXX
     }
 }
 ```
+
+### Package Name
+Refactor package name from <code>starter</code> to what you like.
+
+### Start project
+Start project once, check that everything is working :
+ * Create an account
+ * Login with this account
+ * Recover your password
+
+Before starting, it may be necessary to run <code>grails clean-all</code> in order to avoid exception.
