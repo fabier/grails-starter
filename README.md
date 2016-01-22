@@ -72,6 +72,18 @@ to :
 grails.plugin.springsecurity.userLookup.usernamePropertyName = 'username'
 ```
 
+### Administrator
+If you need that an administator user is created on startup, then uncomment the following lines and fill it with your data
+
+```
+// Définition de l'utilisateur 'administrateur'
+// admin {
+//     username = "XXXX XXXXXXX"
+//     password = "XXXXXXXXXXXX"
+//     email = "XXXX@XXXXXXX.com"
+// }
+```
+
 ### Mail server
 Open <code>Config.groovy</code>, and modify the following lines to your needs :
 > Config.groovy
