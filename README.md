@@ -228,6 +228,18 @@ L'équipe XXXXXXXXXXX
 
 ### Package Name
 Refactor package name from <code>starter</code> to what you like.
+<br/>
+Then use this name to edit values in <code>Config.groovy</code>
+
+> Config.groovy
+```
+#grails.plugin.springsecurity.userLookup.userDomainClassName = 'starter.User'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'mypackagename.User'
+#grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'starter.UserRole'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'mypackagename.UserRole'
+#grails.plugin.springsecurity.authority.className = 'starter.Role'
+grails.plugin.springsecurity.authority.className = 'mypackagename.Role'
+```
 
 ### Start project
 Start project once, check that everything is working :
