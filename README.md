@@ -20,6 +20,15 @@ Change app.name to your application name
 app.name=my.superb.app
 ```
 
+### App Id configuration
+Change <code>grails.project.groupId</code> value in <code>Config.groovy</code>
+> Config.groovy
+
+```
+#grails.project.groupId = 'grails-starter'
+grails.project.groupId = 'my-superb-app'
+```
+
 ### Database
 By default, the project uses a **PostgreSQL 9.4** database.
 To change the default configuration, edit <code>DataSource.groovy</code>.
