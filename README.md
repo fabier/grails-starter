@@ -56,9 +56,9 @@ dataSource {
 }
 ```
 
-Edit <code>/grails-app/conf/passwords.properties</code> : change **dataSource.username** and **dataSource.password** to database login and password respectively.
+Create <code>/grails-app/conf/passwords.properties</code> : change **dataSource.username** and **dataSource.password** to database login and password respectively.
 
-> Edit /grails-app/conf/passwords.properties
+> /grails-app/conf/passwords.properties
 
 ```properties
 ####
@@ -104,7 +104,7 @@ grails.plugin.springsecurity.userLookup.usernamePropertyName = 'username'
 ```
 
 ### Administrator
-If you need that an administator user is created on startup, then edit the file <code>/grails-app/conf/passwords.properties</code>
+If you need that an administator user is created on startup, then edit the file <code>/grails-app/conf/passwords.properties</code> and add the following lines :
 
 > /grails-app/conf/passwords.properties
 
@@ -139,7 +139,8 @@ grails {
 }
 ```
 
-Then, edit the file <code>/grails-app/conf/passwords.properties</code> and store the login to use and the password to send emails :
+Then, edit the file <code>/grails-app/conf/passwords.properties</code> and store the login to use and the password to send emails.
+Add the following lines :
 
 > /grails-app/conf/passwords.properties
 
