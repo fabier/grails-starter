@@ -11,6 +11,17 @@ Uses **mail plugin** to send confirmation emails and "recover password" email.
 
 ## Configuration
 
+### passwords.properties
+
+Create a file name passwords.properties in /grails-app/conf/passwords.properties and add it to .gitignore
+
+```\bin\sh
+touch /grails-app/conf/passwords.properties
+printf '\n%s' '/grails-app/conf/passwords.properties' >> .gitignore
+```
+
+This way passwords will be stored on your local machine, but will never be commited.
+
 ### application.properties
 Edit file <code>application.properties</code>
 Change app.name to your application name
