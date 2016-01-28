@@ -5,7 +5,11 @@ dataSource {
 //    dbCreate = "create-drop"
     driverClassName = "org.postgresql.Driver"
     url = "jdbc:postgresql://localhost:5432/XXXXXXXXXXXX"
-    dialect = org.hibernate.dialect.PostgreSQL9Dialect
+    // This dialect creates a sequence per table, making id values being without gaps
+    // You can also use :
+    // dialect = org.hibernate.dialect.PostgreSQL9Dialect
+    // if you prefer to have only one sequence throughout the database
+    dialect = starter.TableNameSequencePostgreSQLDialect
 //    logSql = true
 }
 
