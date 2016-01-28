@@ -11,6 +11,8 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
+grails.config.locations = ["passwords.properties"]
+
 grails.project.groupId = 'grails-starter' // change this to alter the default package name and Maven publishing destination
 
 // The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
@@ -119,25 +121,15 @@ log4j.main = {
     info "grails.app"
 }
 
-
 // Définition des rôles
 role.admin = 'ROLE_ADMIN'
 role.user = 'ROLE_USER'
-
-// Définition de l'utilisateur 'administrateur'
-// admin {
-//     username = "XXXX XXXXXXX"
-//     password = "XXXXXXXXXXXX"
-//     email = "XXXX@XXXXXXX.com"
-// }
 
 // Configuration pour le serveur de mail
 grails {
     mail {
         host = "smtp.XXXXXXXXXXX.com"
         port = 587
-        username = "XXXXXXXXXXX@XXXXXXXXXXX.com"
-        password = "XXXXXXXXXXX"
         props = ["mail.smtp.auth"                  : "true",
                  "mail.smtp.socketFactory.port"    : "587",
                  "mail.smtp.socketFactory.class"   : "javax.net.ssl.SSLSocketFactory",
@@ -171,7 +163,7 @@ grails.plugin.springsecurity.ui.register.postRegisterUrl = '/'
 grails.plugin.springsecurity.ui.register.emailFrom = 'XXXXXXXXXXX@XXXXXXXXXXX.com'
 grails.plugin.springsecurity.ui.register.emailSubject = 'XXXXXXXXXXX - Valider votre email'
 grails.plugin.springsecurity.ui.register.defaultRoleNames = ['ROLE_USER']
-grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*[a-zA-Z\\d]).*$' // Au moins quelques caractères
+grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*[a-zA-Z\\d]).*$' // At least a few characters
 grails.plugin.springsecurity.ui.password.minLength = 4
 grails.plugin.springsecurity.ui.password.maxLength = 64
 grails.plugin.springsecurity.userLookup.usernamePropertyName = 'email'

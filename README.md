@@ -15,6 +15,8 @@ Uses **mail plugin** to send confirmation emails and "recover password" email.
 Edit file <code>application.properties</code>
 Change app.name to your application name
 
+> /application.properties
+
 ```
 #app.name=grails-starter
 app.name=my.superb.app
@@ -22,7 +24,7 @@ app.name=my.superb.app
 
 ### App Id configuration
 Change <code>grails.project.groupId</code> value in <code>Config.groovy</code>
-> Config.groovy
+> /grails-app/conf/Config.groovy
 
 ```
 #grails.project.groupId = 'grails-starter'
@@ -33,29 +35,45 @@ grails.project.groupId = 'my-superb-app'
 By default, the project uses a **PostgreSQL 9.4** database.
 To change the default configuration, edit <code>DataSource.groovy</code>.
 
-It is recommended that you change values for **url**, **username** and **password**.
+Change value for **url** in <code>/grails-app/conf/DataSource.groovy</code>.
+It is not a good idea to store passwords in this commited file, so instead, it is recommended to use a file under <code>/grails-app/conf</code> named <code>passwords.properties</code> containing all passwords. You should not commit this file, and keep it as a secret.
 You can also uncomment <code>// logSql = true</code> to display SQL logs.
 
-> DataSource.groovy
+Edit XXXXXXXXXXXX to your database name.
+
+> /grails-app/conf/DataSource.groovy
 
 ```groovy
 dataSource {
     pooled = true
-    dbCreate = "update" // "validate"
+    dbCreate = "update"
+//    dbCreate = "validate"
+//    dbCreate = "create-drop"
     driverClassName = "org.postgresql.Driver"
     url = "jdbc:postgresql://localhost:5432/XXXXXXXXXXXX"
     dialect = org.hibernate.dialect.PostgreSQL9Dialect
-    username = "XXXXXXXXXXXX"
-    password = "XXXXXXXXXXXX"
 //    logSql = true
 }
 ```
 
+Edit <code>/grails-app/conf/passwords.properties</code> : change **dataSource.username** and **dataSource.password** to database login and password respectively.
+
+> Edit /grails-app/conf/passwords.properties
+
+```properties
+####
+# Database password
+####
+# TODO : Change it
+dataSource.username=user
+# TODO : Change it
+dataSource.password=password
+```
 ### Security
 
 By default, **email** is the user's login. This can be changed to **username** if needed by modifying both <code>User.groovy</code> and <code>Config.groovy</code>.
 
-> in User.groovy change :
+> Edit /grails-app/domain/starter/User.groovy
 
 ```groovy
 static constraints = {
@@ -74,7 +92,8 @@ static constraints = {
     creator nullable: true
 }
 ```
-> in Config.groovy change :
+
+> Edit /grails-app/conf/Config.groovy :
 
 ```groovy
 grails.plugin.springsecurity.userLookup.usernamePropertyName = 'email'
@@ -85,65 +104,68 @@ grails.plugin.springsecurity.userLookup.usernamePropertyName = 'username'
 ```
 
 ### Administrator
-If you need that an administator user is created on startup, then uncomment the following lines and fill it with your data
+If you need that an administator user is created on startup, then edit the file <code>/grails-app/conf/passwords.properties</code>
+
+> /grails-app/conf/passwords.properties
 
 ```
-// Définition de l'utilisateur 'administrateur'
-// admin {
-//     username = "XXXX XXXXXXX"
-//     password = "XXXXXXXXXXXX"
-//     email = "XXXX@XXXXXXX.com"
-// }
+####
+# Admin user
+####
+# (Automatically created on startup if non existent, and gets ROLE_ADMIN)
+# TODO : Change it
+admin.username=John Doe
+# TODO : Change it
+admin.email=xyz@example.com
+# TODO : Change it
+admin.password=password
 ```
 
 ### Mail server
-Open <code>Config.groovy</code>, and modify the following lines to your needs :
-> Config.groovy
+First, edit the file Config.groovy, and modify the email host :
 
-```groovy
-// Configuration pour le serveur de mail
+> /grails-app/conf/Config.groovy
+
+```
 grails {
-  mail {
-    host = "smtp.XXXXXXXXXXX.com"
-    port = 587
-    username = "XXXXXXXXXXX@XXXXXXXXXXX.com"
-    password = "XXXXXXXXXXX"
-    props = ["mail.smtp.auth"                  : "true",
-             "mail.smtp.socketFactory.port"    : "587",
-             "mail.smtp.socketFactory.class"   : "javax.net.ssl.SSLSocketFactory",
-             "mail.smtp.socketFactory.fallback": "true"]
-  }
+    mail {
+        host = "smtp.XXXXXXXXXXX.com"
+        port = 587
+        props = ["mail.smtp.auth"                  : "true",
+                 "mail.smtp.socketFactory.port"    : "587",
+                 "mail.smtp.socketFactory.class"   : "javax.net.ssl.SSLSocketFactory",
+                 "mail.smtp.socketFactory.fallback": "true"]
+    }
 }
 ```
-Like this for example :
-> Config.groovy
+
+Then, edit the file <code>/grails-app/conf/passwords.properties</code> and store the login to use and the password to send emails :
+
+> /grails-app/conf/passwords.properties
 
 ```groovy
-// Configuration pour le serveur de mail
-grails {
-  mail {
-    host = "smtp.gmail.com"
-    port = 587
-    username = "randomuser@gmail.com"
-    password = "mypassword_is_*AW50me*!"
-    props = ["mail.smtp.auth"                  : "true",
-             "mail.smtp.socketFactory.port"    : "587",
-             "mail.smtp.socketFactory.class"   : "javax.net.ssl.SSLSocketFactory",
-             "mail.smtp.socketFactory.fallback": "true"]
-  }
-}
+####
+# Email account to send emails
+####
+# TODO : Change it
+grails.mail.username=xyz@example.com
+# TODO : Change it
+grails.mail.password=password
 ```
+
 ### SpringSecurity UI Configuration
+
 It is possible to change the default configuration for SpringSecurity UI.
 It is recommended to change the following properties
  * grails.plugin.springsecurity.ui.register.emailFrom
  * grails.plugin.springsecurity.ui.register.emailSubject
+
 ```groovy
 grails.plugin.springsecurity.ui.register.postRegisterUrl = '/'
 grails.plugin.springsecurity.ui.register.emailFrom = 'XXXXXXXXXXX@XXXXXXXXXXX.com'
 grails.plugin.springsecurity.ui.register.emailSubject = 'XXXXXXXXXXX - Valider votre email'
 grails.plugin.springsecurity.ui.register.defaultRoleNames = ['ROLE_USER']
-grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*[a-zA-Z\\d]).*$' // Au moins quelques caractères
+grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*[a-zA-Z\\d]).*$' // At least a few characters
 grails.plugin.springsecurity.ui.password.minLength = 4
 grails.plugin.springsecurity.ui.password.maxLength = 64
 grails.plugin.springsecurity.userLookup.usernamePropertyName = 'email'

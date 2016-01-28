@@ -1,11 +1,11 @@
 dataSource {
     pooled = true
-    dbCreate = "update" // "validate"
+    dbCreate = "update"
+//    dbCreate = "validate"
+//    dbCreate = "create-drop"
     driverClassName = "org.postgresql.Driver"
     url = "jdbc:postgresql://localhost:5432/XXXXXXXXXXXX"
     dialect = org.hibernate.dialect.PostgreSQL9Dialect
-    username = "XXXXXXXXXXXX"
-    password = "XXXXXXXXXXXX"
 //    logSql = true
 }
 
@@ -27,8 +27,7 @@ environments {
     }
     production {
         dataSource {
-            username = "XXXXXXXXXXXX"
-            password = "XXXXXXXXXXXX"
+            dbCreate = "update"
         }
     }
 }
